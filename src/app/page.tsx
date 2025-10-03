@@ -1,103 +1,231 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import React, { useState } from 'react';
+import { Github, Linkedin, Mail, ExternalLink, Menu, X, Code, Briefcase, User, MessageSquare } from 'lucide-react';
+
+const Portfolio = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+
+  const projects = [
+    {
+      title: "EduMark Marketplace",
+      description: "A full-stack mobile application that uses OCR technology to aid educators in marking and grading students.",
+      tech: ["React", "Python", "TensorFlow", "TypeScript"],
+      link: "#"
+    },
+    {
+      title: "AI Chat Application",
+      description: "Real-time chat application with AI-powered responses and sentiment analysis.",
+      tech: ["TypeScript", "WebSocket", "OpenAI", "Redis"],
+      link: "#"
+    },
+    {
+      title: "Portfolio Analytics",
+      description: "Data visualization dashboard for tracking portfolio performance and metrics.",
+      tech: ["Next.js", "D3.js", "PostgreSQL", "Tailwind"],
+      link: "#"
+    }
+  ];
+
+  const skills = [
+    { category: "Frontend", items: ["React", "TypeScript", "Tailwind CSS", "Next.js", "Vue.js"] },
+    { category: "Backend", items: ["Node.js", "Python", "Express", "PostgreSQL", "MongoDB"] },
+    { category: "Tools", items: ["Git", "Vercel", "Figma"] }
+  ];
+
+  const scrollToSection = (sectionId: string) => {
+    setActiveSection(sectionId);
+    setIsMenuOpen(false);
+  };
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-100">
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full bg-slate-950/80 backdrop-blur-md z-50 border-b border-slate-800">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              Portfolio
+            </div>
+            
+            {/* Desktop Menu */}
+            <div className="hidden md:flex space-x-8">
+              {['Home', 'About', 'Projects', 'Contact'].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item.toLowerCase())}
+                  className={`hover:text-cyan-400 transition-colors ${
+                    activeSection === item.toLowerCase() ? 'text-cyan-400' : ''
+                  }`}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-slate-900 border-t border-slate-800">
+            <div className="px-4 py-4 space-y-3">
+              {['Home', 'About', 'Projects', 'Contact'].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item.toLowerCase())}
+                  className="block w-full text-left py-2 hover:text-cyan-400 transition-colors"
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </nav>
+
+      {/* Hero Section */}
+      <section id="home" className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center space-y-6">
+            <div className="inline-block">
+              <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 p-1">
+                <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center">
+                  <User size={48} className="text-cyan-400" />
+                </div>
+              </div>
+            </div>
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold">
+              Hi, I'm <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Caleb Chilufya</span>
+            </h1>
+            <p className="text-xl sm:text-2xl text-slate-400 max-w-2xl mx-auto">
+              Full Stack Developer & Designer
+            </p>
+            <p className="text-slate-500 max-w-xl mx-auto">
+              Crafting beautiful, functional, and scalable web and mobile applications with modern technologies.
+            </p>
+            <div className="flex justify-center gap-4 pt-4">
+              <a href="#" className="p-3 bg-slate-800 rounded-full hover:bg-slate-700 transition-colors">
+                <Github size={24} />
+              </a>
+              <a href="#" className="p-3 bg-slate-800 rounded-full hover:bg-slate-700 transition-colors">
+                <Linkedin size={24} />
+              </a>
+              <a href="#" className="p-3 bg-slate-800 rounded-full hover:bg-slate-700 transition-colors">
+                <Mail size={24} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-12 flex items-center justify-center gap-3">
+            <User className="text-cyan-400" size={32} />
+            About Me
+          </h2>
+          <div className="grid md:grid-cols-2 gap-12">
+            <div className="space-y-4">
+              <p className="text-slate-300 leading-relaxed">
+                I'm a passionate developer with 2+ years of experience building web and mobile applications. 
+                I love turning complex problems into simple, beautiful, and intuitive solutions.
+              </p>
+              <p className="text-slate-300 leading-relaxed">
+                When I'm not coding, you'll find me doing graphics design and video editing.
+              </p>
+            </div>
+            <div className="space-y-6">
+              {skills.map((skillGroup) => (
+                <div key={skillGroup.category}>
+                  <h3 className="text-cyan-400 font-semibold mb-3">{skillGroup.category}</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {skillGroup.items.map((skill) => (
+                      <span
+                        key={skill}
+                        className="px-3 py-1 bg-slate-800 rounded-full text-sm border border-slate-700 hover:border-cyan-400 transition-colors"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-12 flex items-center justify-center gap-3">
+            <Briefcase className="text-cyan-400" size={32} />
+            Projects
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((project, index) => (
+              <div
+                key={index}
+                className="bg-slate-800/50 rounded-xl p-6 border border-slate-700 hover:border-cyan-400 transition-all hover:transform hover:scale-105"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <Code className="text-cyan-400" size={24} />
+                  <a href={project.link} className="text-slate-400 hover:text-cyan-400 transition-colors">
+                    <ExternalLink size={20} />
+                  </a>
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                <p className="text-slate-400 text-sm mb-4">{project.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((tech) => (
+                    <span key={tech} className="text-xs px-2 py-1 bg-slate-900 rounded text-cyan-400">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/50">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-6 flex items-center justify-center gap-3">
+            <MessageSquare className="text-cyan-400" size={32} />
+            Get In Touch
+          </h2>
+          <p className="text-slate-400 mb-8 text-lg">
+            I'm always open to new opportunities and collaborations. Feel free to reach out!
+          </p>
           <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="mailto:your.email@example.com"
+            className="inline-block px-8 py-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 font-semibold rounded-lg hover:opacity-90 transition-opacity"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
+            Say Hello
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-8 px-4 border-t border-slate-800">
+        <div className="max-w-6xl mx-auto text-center text-slate-500">
+          <p>© 2025 Caleb Chilufya. Built with React, TypeScript & Tailwind CSS.</p>
+        </div>
       </footer>
     </div>
   );
-}
+};
+
+export default Portfolio;
