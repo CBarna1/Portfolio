@@ -47,10 +47,25 @@ const Portfolio = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormStatus('Message sent successfully! I\'ll get back to you soon.');
-    setFormData({ name: '', email: '', message: '' });
+    try {
+      const response = await fetch('https://formspree.io/f/mblzynnq', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        setFormStatus('Message sent successfully! I\'ll get back to you soon.');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setFormStatus('Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      setFormStatus('Failed to send message. Please try again.');
+    }
     setTimeout(() => setFormStatus(''), 5000);
   };
 
@@ -263,7 +278,7 @@ const Portfolio = () => {
                 onChange={handleInputChange}
                 required
                 className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg text-slate-100 focus:outline-none focus:border-cyan-400 transition-colors"
-                placeholder="John Doe"
+                placeholder=""
               />
             </div>
             
