@@ -15,27 +15,27 @@ const Portfolio = () => {
 
   const projects = [
     {
-      title: "E-Commerce Platform",
-      description: "A full-stack e-commerce solution with payment integration and inventory management.",
-      tech: ["React", "Node.js", "MongoDB", "Stripe"],
-      link: "#"
+      title: "UniMatch",
+      description: "A fullstack web app that assists recent school leavers with recommedation of universities to them, based on their interests and results.",
+      tech: ["Django", "Python", "MongoDB", "Tailwind"],
+      link: "https://github.com/POLLARD1145/UniMatchOfficial"
     },
     {
-      title: "AI Chat Application",
-      description: "Real-time chat application with AI-powered responses and sentiment analysis.",
-      tech: ["TypeScript", "WebSocket", "OpenAI", "Redis"],
-      link: "#"
+      title: "ProjectScream website",
+      description: "A website for ProjectScream foundation.",
+      tech: ["TypeScript", "React native", "Tailwind"],
+      link: "https://www.projectscreamfoundation.com/"
     },
     {
-      title: "Portfolio Analytics",
-      description: "Data visualization dashboard for tracking portfolio performance and metrics.",
-      tech: ["Next.js", "D3.js", "PostgreSQL", "Tailwind"],
+      title: "EduMark",
+      description: "A mobile application that assists lecturers in the grading of students answer scripts using OCR technology and AI.",
+      tech: ["React with Expo GO", "TypeScript", "Python", "Flask"],
       link: "#"
     }
   ];
 
   const skills = [
-    { category: "Development", items: ["React", "TypeScript", "Tailwind CSS", "Next.js", "Node.js"] },
+    { category: "Development", items: ["React", "TypeScript", "Tailwind CSS", "Next.js", "Node.js", "Python"] },
     { category: "Design", items: ["Adobe Photoshop", "Illustrator", "Figma", "Canva", "Brand Identity"] },
     { category: "Social Media", items: ["Content Strategy", "Instagram", "Facebook", "LinkedIn", "Analytics"] }
   ];
@@ -138,7 +138,7 @@ const Portfolio = () => {
               Full Stack Developer | Graphic Designer | Social Media Manager
             </p>
             <p className="text-slate-500 max-w-xl mx-auto">
-              Crafting beautiful web applications, stunning designs, and engaging social media content that drives results.
+              Crafting beautiful web and mobile applications, stunning designs, and engaging social media content that drives results.
             </p>
             <div className="flex justify-center gap-4 pt-4">
               <a href="https://github.com/CBarna1" target="_blank" rel="noopener noreferrer" className="p-3 bg-slate-800 rounded-full hover:bg-slate-700 transition-colors">
