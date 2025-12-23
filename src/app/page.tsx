@@ -154,7 +154,7 @@ const Portfolio = () => {
               Hi, I'm <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Caleb Chilufya</span>
             </h1>
             <p className="text-xl sm:text-2xl text-slate-400 max-w-2xl mx-auto">
-              Full Stack Developer | Graphic Designer | Social Media Manager
+              Full Stack Developer | Author | Graphic Designer | Social Media Manager
             </p>
             <p className="text-slate-500 max-w-xl mx-auto">
               Crafting beautiful web and mobile applications, stunning designs, and engaging social media content that drives results.
@@ -170,7 +170,7 @@ const Portfolio = () => {
                 <Mail size={24} />
               </a>
             </div>
-            <div className="pt-6">
+            <div className="pt-6 flex justify-center gap-4">
               <a
                 href="/resume.pdf"
                 download
@@ -178,6 +178,15 @@ const Portfolio = () => {
               >
                 <Download size={20} />
                 Download Resume
+              </a>
+
+              <a
+                href="/The Peak - Complete.pdf"
+                download
+                className="inline-flex items-center gap-2 px-6 py-3 bg-slate-800 text-cyan-400 font-semibold rounded-lg hover:bg-slate-700 transition-colors"
+              >
+                <ExternalLink size={20} />
+                Download Book
               </a>
             </div>
           </div>
